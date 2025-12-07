@@ -67,4 +67,7 @@ dependencies {
     // Navigation
     implementation(libs.androidx.navigation.runtime.ktx)
     implementation(libs.androidx.navigation.compose)
+
+    // Immutable collections
+    implementation(libs.kotlinx.collections.immutable)
 }
