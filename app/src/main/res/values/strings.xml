@@ -1,3 +1,19 @@
 <resources>
     <string name="app_name">My Pet</string>
+
+    <!-- Экран со списком питомцев  -->
+    <string name="list_profile_screen_title">Мои питомцы</string>
+
+
+    <!-- Экран создания профиля питомце  -->
+    <string name="create_profile_screen_title">Создание профиля</string>
+
+
+    <!-- Экран изменения профиля питомца  -->
+    <string name="update_profile_screen_title">Изменение профиля</string>
+
+
+    <!-- Экран детальной информации о питомце  -->
+    <string name="profile_screen_title">Профиль</string>
+
 </resources>
