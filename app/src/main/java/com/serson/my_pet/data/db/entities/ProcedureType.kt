@@ -1,11 +1,10 @@
-package com.f4.mypet.data.db.entities
+package com.serson.my_pet.data.db.entities
 
 import androidx.room.ColumnInfo
 import androidx.room.Embedded
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import androidx.room.Relation
-import com.serson.my_pet.data.db.entities.ProcedureTitle
 
 @Entity
 data class ProcedureType(

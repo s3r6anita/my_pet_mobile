@@ -19,6 +19,7 @@
     <string name="arrow_right_description">Стрелка вправо</string>
     <string name="edit_button_description">Редактировать</string>
     <string name="unknown">Неизвестно</string>
+    <string name="error">Ошибка</string>
 
     <!-- Экран со списком питомцев  -->
     <string name="list_profile_screen_title">Мои питомцы</string>

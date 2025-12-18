@@ -6,7 +6,7 @@ import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import androidx.room.Update
 import com.serson.my_pet.data.db.entities.ProcedureTitle
-import com.f4.mypet.data.db.entities.ProcedureType
+import com.serson.my_pet.data.db.entities.ProcedureType
 import kotlinx.coroutines.flow.Flow
 
 @Dao
