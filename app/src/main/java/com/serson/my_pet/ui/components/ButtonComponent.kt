@@ -1,4 +1,4 @@
-package com.f4.mypet.ui.components
+package com.serson.my_pet.ui.components
 
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.layout.padding
@@ -15,7 +15,7 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
-import com.f4.mypet.R
+import com.serson.my_pet.R
 
 @Suppress("LongParameterList")
 @Composable

@@ -1,4 +1,4 @@
-package com.f4.mypet.ui.components
+package com.serson.my_pet.ui.components
 
 import androidx.annotation.DrawableRes
 import androidx.compose.material3.Badge
@@ -12,9 +12,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.navigation.NavHostController
-import com.f4.mypet.R
-import com.f4.mypet.navigation.Routes
-import com.f4.mypet.navigation.START
+import com.serson.my_pet.R
+import com.serson.my_pet.navigation.Routes
+import com.serson.my_pet.navigation.START
 import kotlinx.collections.immutable.ImmutableList
 import kotlinx.collections.immutable.persistentListOf
 

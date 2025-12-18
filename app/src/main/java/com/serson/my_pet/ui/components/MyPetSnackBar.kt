@@ -1,4 +1,4 @@
-package com.f4.mypet.ui.components
+package com.serson.my_pet.ui.components
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
@@ -19,7 +19,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
-import com.f4.mypet.R
+import com.serson.my_pet.R
 
 const val SHOWSNACKDURATION = 3000L
 
