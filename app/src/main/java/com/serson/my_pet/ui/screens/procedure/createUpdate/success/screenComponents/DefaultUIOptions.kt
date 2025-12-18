@@ -3,19 +3,22 @@ package com.serson.my_pet.ui.screens.procedure.createUpdate.success.screenCompon
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.ExposedDropdownMenuDefaults
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.OutlinedTextFieldDefaults
 import androidx.compose.material3.TextFieldColors
 import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
+import com.serson.my_pet.ui.components.OutlinedTextFieldComponent
 import com.serson.my_pet.ui.theme.LightBlueBackground
 import com.serson.my_pet.ui.theme.LightGrayTint
 import com.serson.my_pet.ui.theme.RedButton
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun getDropdownMenuColors(): TextFieldColors = TextFieldDefaults.outlinedTextFieldColors(
+fun getDropdownMenuColors(): TextFieldColors = OutlinedTextFieldDefaults.colors(
     focusedBorderColor = LightBlueBackground,
     unfocusedBorderColor = LightGrayTint,
-    containerColor = MaterialTheme.colorScheme.background,
+    unfocusedContainerColor = MaterialTheme.colorScheme.background,
+    focusedContainerColor = MaterialTheme.colorScheme.background,
     errorBorderColor = RedButton
 )
 

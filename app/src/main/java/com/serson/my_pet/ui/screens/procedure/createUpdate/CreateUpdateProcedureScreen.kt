@@ -13,7 +13,6 @@ import androidx.navigation.NavHostController
 import com.serson.my_pet.ui.components.StatusDialog
 import com.serson.my_pet.ui.screens.ErrorScreen
 import com.serson.my_pet.ui.screens.LoadingScreen
-import com.serson.my_pet.ui.screens.procedure.createUpdate.CreateUpdateProcedureViewModel
 import com.serson.my_pet.ui.screens.procedure.createUpdate.success.SuccessCUProcedureScreen
 import com.serson.my_pet.util.UIState
 import kotlinx.coroutines.launch
