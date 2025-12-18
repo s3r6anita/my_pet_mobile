@@ -38,14 +38,6 @@ class ListProfileViewModel @Inject constructor(
         _uiState.update { UIState.Loading }
         viewModelScope.launch(IO) {
             try {
-                _petsUiState.value = networkRepository.getPets()
-                _proceduresUiState.value = networkRepository.getProcedures()
-                _medRecordsUiState.value = networkRepository.getMedRecords()
-                when (val titles = networkRepository.getTitles()) {
-                    is NetworkResult.Success -> _procedureTitlesUiState.value = titles.data as List<ProcedureTitle>
-                    is NetworkResult.Error -> _uiState.update { UIState.Error }
-                }
-
                 repository.replaceAllData(_petsUiState.value, _proceduresUiState.value, _medRecordsUiState.value,  _procedureTitlesUiState.value)
             } catch (e: HttpException) {
                 _petsUiState.value = repository.getPets()
