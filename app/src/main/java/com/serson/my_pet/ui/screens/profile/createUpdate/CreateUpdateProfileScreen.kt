@@ -1,4 +1,4 @@
-package com.serson.my_pet.ui.screens.createUpdate
+package com.serson.my_pet.ui.screens.profile.createUpdate
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -436,11 +436,11 @@ fun CreateUpdateProfileScreen(
                             scope.launch {
                                 viewModel.createPet(pet)
                             }
-                        } else {
-                            scope.launch {
-                                viewModel.updatePet(pet)
-                            }
-                        }
+                        } //else {
+//                            scope.launch {
+//                                viewModel.updatePet(pet)
+//                            }
+//                        }
                     },
                     text = stringResource(id = R.string.save_button_description),
                     color = ButtonDefaults.buttonColors(containerColor = GreenButton),

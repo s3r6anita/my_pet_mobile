@@ -1,10 +1,9 @@
-package com.f4.mypet.ui.screens.profile.createUpdate
+package com.serson.my_pet.ui.screens.profile.createUpdate
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.serson.my_pet.data.db.Repository
 import com.serson.my_pet.data.db.entities.Pet
-import com.f4.mypet.data.network.NetworkRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -15,8 +14,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class CreateUpdateProfileViewModel @Inject constructor(
-    private val repository: Repository,
-    private val networkRepository: NetworkRepository
+    private val repository: Repository
 ) : ViewModel() {
     private val _msg = MutableStateFlow<String?>("")
     val msg = _msg.asStateFlow()
@@ -41,18 +39,16 @@ class CreateUpdateProfileViewModel @Inject constructor(
     fun createPet(pet: Pet) {
         _msg.value = ""
         viewModelScope.launch {
-            _msg.value = networkRepository.insertPet(pet)
             repository.insertPet(pet)
         }
     }
 
-    fun updatePet(pet: Pet) {
-        _msg.value = ""
-        viewModelScope.launch {
-            _msg.value = networkRepository.updatePet(pet)
-            repository.updatePet(pet)
-        }
-    }
+//    fun updatePet(pet: Pet) {
+//        _msg.value = ""
+//        viewModelScope.launch {
+//            repository.updatePet(pet)
+//        }
+//    }
 
     fun resetMsg() {
         _msg.value = ""
