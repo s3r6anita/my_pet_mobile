@@ -4,6 +4,21 @@
     <string name="clear">Очистить</string>
     <string name="icon_description">Icon</string>
     <string name="back_button">Назад</string>
+    <string name="clear">Очистить</string>
+    <string name="show_calendar">Открыть календарь</string>
+    <string name="back_button">Назад</string>
+    <string name="save_button_description">Сохранить</string>
+    <string name="add_button_description">Добавить</string>
+    <string name="exit_button_description">Выход</string>
+    <string name="update_profile_button_description">Изменить профиль питомца</string>
+    <string name="share_button_description">Поделиться</string>
+    <string name="delete_button_description">Удалить</string>
+    <string name="confirm_button_description">Ок</string>
+    <string name="cancel_button_description">Отмена</string>
+    <string name="add_button_icon_description">Icon +</string>
+    <string name="arrow_right_description">Стрелка вправо</string>
+    <string name="edit_button_description">Редактировать</string>
+    <string name="unknown">Неизвестно</string>
 
     <!-- Экран со списком питомцев  -->
     <string name="list_profile_screen_title">Мои питомцы</string>
@@ -19,5 +34,30 @@
 
     <!-- Экран детальной информации о питомце  -->
     <string name="profile_screen_title">Профиль</string>
+
+    <!-- Экран со списком процедур -->
+    <string name="procedure_screen_title">Процедура</string>
+    <string name="procedure_screen_creation">Создание процедуры</string>
+    <string name="procedure_screen_delete">Удалить</string>
+    <string name="procedure_screen_question_delete_procedure">"Вы уверены, что хотите удалить процедуру?"</string>
+    <string name="procedure_screen_cancel">"Отмена"</string>
+    <string name="procedure_screen_ok">"ОК"</string>
+    <string name="procedure_screen_edit_procedure">"Редактировать"</string>
+    <string name="procedure_screen_procedure_is_done">"Процедура выполнена"</string>
+    <string name="procedure_screen_procedure_is_not_done">"Процедура не выполнена"</string>
+    <string name="procedure_screen_procedure_will_be_done">"Процедура будет выполнена"</string>
+    <string name="procedure_screen_reminder">"Напоминание"</string>
+    <string name="procedure_screen_turned_off">"выключено"</string>
+    <string name="procedure_screen_notice">"Заметки"</string>
+    <string name="procedure_screen_delete_title_alert">Удаление процедуры</string>
+    <string name="procedure_screen_type">Тип</string>
+    <string name="procedure_screen_date_of_event">Дата проведения</string>
+    <string name="procedure_screen_time_of_event">Время</string>
+    <string name="procedure_screen_frequency">Периодичность</string>
+    <string name="procedure_screen_icon_procedure_desc">Иконка процедуры</string>
+    <string name="list_procedure_screen_title">Процедуры</string>
+    <string name="list_procedure_screen_add_procedure">Добавить процедуру</string>
+    <string name="create_procedure_screen_title">Создание процедуры</string>
+    <string name="update_procedure_screen_title">Редактирование процедуры</string>
 
 </resources>

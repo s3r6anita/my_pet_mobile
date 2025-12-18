@@ -7,8 +7,6 @@ import com.serson.my_pet.data.db.entities.MedRecord
 import com.serson.my_pet.data.db.entities.Pet
 import com.serson.my_pet.data.db.entities.Procedure
 import com.serson.my_pet.data.db.entities.ProcedureTitle
-import com.serson.my_pet.data.network.NetworkRepository
-import com.serson.my_pet.data.network.model.NetworkResult
 import com.serson.my_pet.util.UIState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers.IO
@@ -22,8 +20,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class ListProfileViewModel @Inject constructor(
-    private val repository: Repository,
-    private val networkRepository: NetworkRepository
+    private val repository: Repository
 ) : ViewModel() {
     private val _proceduresUiState = MutableStateFlow(emptyList<Procedure>())
     private val _procedureTitlesUiState = MutableStateFlow(emptyList<ProcedureTitle>())
@@ -41,14 +38,6 @@ class ListProfileViewModel @Inject constructor(
         _uiState.update { UIState.Loading }
         viewModelScope.launch(IO) {
             try {
-                _petsUiState.value = networkRepository.getPets()
-                _proceduresUiState.value = networkRepository.getProcedures()
-                _medRecordsUiState.value = networkRepository.getMedRecords()
-                when (val titles = networkRepository.getTitles()) {
-                    is NetworkResult.Success -> _procedureTitlesUiState.value = titles.data as List<ProcedureTitle>
-                    is NetworkResult.Error -> _uiState.update { UIState.Error }
-                }
-
                 repository.replaceAllData(_petsUiState.value, _proceduresUiState.value, _medRecordsUiState.value,  _procedureTitlesUiState.value)
             } catch (e: HttpException) {
                 _petsUiState.value = repository.getPets()

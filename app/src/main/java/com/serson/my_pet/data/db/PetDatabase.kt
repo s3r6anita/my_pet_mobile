@@ -1,20 +1,21 @@
-package com.f4.mypet.data.db
+package com.serson.my_pet.data.db
 
 import android.app.Application
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
+import com.f4.mypet.data.db.Converters
 import com.f4.mypet.data.db.daos.FrequencyDAO
 import com.f4.mypet.data.db.daos.MedRecordDAO
-import com.f4.mypet.data.db.daos.PetDAO
-import com.f4.mypet.data.db.daos.PrTitleDAO
-import com.f4.mypet.data.db.daos.ProcedureDAO
-import com.f4.mypet.data.db.entities.Frequency
-import com.f4.mypet.data.db.entities.MedRecord
-import com.f4.mypet.data.db.entities.Pet
-import com.f4.mypet.data.db.entities.Procedure
-import com.f4.mypet.data.db.entities.ProcedureTitle
+import com.serson.my_pet.data.db.daos.PetDAO
+import com.serson.my_pet.data.db.daos.PrTitleDAO
+import com.serson.my_pet.data.db.daos.ProcedureDAO
+import com.serson.my_pet.data.db.entities.Frequency
+import com.serson.my_pet.data.db.entities.MedRecord
+import com.serson.my_pet.data.db.entities.Pet
+import com.serson.my_pet.data.db.entities.Procedure
+import com.serson.my_pet.data.db.entities.ProcedureTitle
 import com.f4.mypet.data.db.entities.ProcedureType
 
 
