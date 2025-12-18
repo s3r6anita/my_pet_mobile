@@ -1,4 +1,4 @@
-package com.serson.my_pet.ui.screens.profile.createUpdate
+package com.serson.my_pet.ui.screens.createUpdate
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column

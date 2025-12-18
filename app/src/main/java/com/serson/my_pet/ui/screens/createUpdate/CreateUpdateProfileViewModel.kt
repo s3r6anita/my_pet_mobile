@@ -2,8 +2,8 @@ package com.f4.mypet.ui.screens.profile.createUpdate
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.f4.mypet.data.db.Repository
-import com.f4.mypet.data.db.entities.Pet
+import com.serson.my_pet.data.db.Repository
+import com.serson.my_pet.data.db.entities.Pet
 import com.f4.mypet.data.network.NetworkRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers

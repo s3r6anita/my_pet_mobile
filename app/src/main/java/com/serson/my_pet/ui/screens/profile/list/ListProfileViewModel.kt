@@ -7,8 +7,6 @@ import com.serson.my_pet.data.db.entities.MedRecord
 import com.serson.my_pet.data.db.entities.Pet
 import com.serson.my_pet.data.db.entities.Procedure
 import com.serson.my_pet.data.db.entities.ProcedureTitle
-import com.serson.my_pet.data.network.NetworkRepository
-import com.serson.my_pet.data.network.model.NetworkResult
 import com.serson.my_pet.util.UIState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers.IO
@@ -22,8 +20,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class ListProfileViewModel @Inject constructor(
-    private val repository: Repository,
-    private val networkRepository: NetworkRepository
+    private val repository: Repository
 ) : ViewModel() {
     private val _proceduresUiState = MutableStateFlow(emptyList<Procedure>())
     private val _procedureTitlesUiState = MutableStateFlow(emptyList<ProcedureTitle>())
