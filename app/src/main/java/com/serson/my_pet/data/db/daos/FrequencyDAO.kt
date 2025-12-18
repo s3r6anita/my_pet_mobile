@@ -5,7 +5,7 @@ import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import androidx.room.Update
-import com.f4.mypet.data.db.entities.Frequency
+import com.serson.my_pet.data.db.entities.Frequency
 
 @Dao
 interface FrequencyDAO {

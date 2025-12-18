@@ -1,4 +1,4 @@
-package com.f4.mypet.data.db.daos
+package com.serson.my_pet.data.db.daos
 
 import androidx.room.Dao
 import androidx.room.Delete
@@ -6,7 +6,7 @@ import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import androidx.room.Update
-import com.f4.mypet.data.db.entities.Procedure
+import com.serson.my_pet.data.db.entities.Procedure
 import kotlinx.coroutines.flow.Flow
 
 @Dao
