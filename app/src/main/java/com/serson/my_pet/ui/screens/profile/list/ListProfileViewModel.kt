@@ -2,14 +2,14 @@ package com.serson.my_pet.ui.screens.profile.list
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.f4.mypet.data.db.Repository
-import com.f4.mypet.data.db.entities.MedRecord
-import com.f4.mypet.data.db.entities.Pet
-import com.f4.mypet.data.db.entities.Procedure
-import com.f4.mypet.data.db.entities.ProcedureTitle
-import com.f4.mypet.data.network.NetworkRepository
-import com.f4.mypet.data.network.model.NetworkResult
-import com.f4.mypet.util.UIState
+import com.serson.my_pet.data.db.Repository
+import com.serson.my_pet.data.db.entities.MedRecord
+import com.serson.my_pet.data.db.entities.Pet
+import com.serson.my_pet.data.db.entities.Procedure
+import com.serson.my_pet.data.db.entities.ProcedureTitle
+import com.serson.my_pet.data.network.NetworkRepository
+import com.serson.my_pet.data.network.model.NetworkResult
+import com.serson.my_pet.util.UIState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers.IO
 import kotlinx.coroutines.flow.MutableStateFlow

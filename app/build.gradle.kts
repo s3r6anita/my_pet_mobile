@@ -57,6 +57,18 @@ dependencies {
 
     debugImplementation(libs.androidx.compose.ui.tooling)
 
+    // retrofit2
+    implementation(libs.converter.gson)
+    implementation(libs.retrofit)
+
+    // okhttp3
+    implementation(libs.logging.interceptor)
+    implementation(libs.okhttp)
+
+    // datastore
+    implementation(libs.androidx.datastore.preferences)
+    implementation(libs.androidx.datastore)
+
     // Room
     ksp(libs.androidx.room.compiler)
     implementation(libs.androidx.room.runtime)
