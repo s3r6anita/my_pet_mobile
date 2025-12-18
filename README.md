@@ -11,3 +11,14 @@ chmod +x detekt
 
 Правила detekt (конфиг) расположены в файле [.github/workflows/assets/detekt.yml](.github/workflows/assets/detekt.yml)
 
+## Pull Requests. Встроенные проверки
+Проверки, выполняемые в pipiline-е pull request-а расположены в файле [.github/workflows/pr.yml](.github/workflows/pr.yml)
+
+Они привидены в самодокументируемом формате, с описанием, что делает каждая проверка.
+
+Основные проверки:
+>1. Запуск detekt для проверки качества кода
+>2. Запуск тестов приложения
+>3. Сборка приложения
+
+Также выполняется публикация архива с apk-файлом debug-сборки приложения.
