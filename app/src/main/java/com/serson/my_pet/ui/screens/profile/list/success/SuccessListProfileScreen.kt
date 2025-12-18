@@ -1,4 +1,4 @@
-package com.f4.mypet.ui.screens.profile.list.success
+package com.serson.my_pet.ui.screens.profile.list.success
 
 import android.content.Context
 import androidx.compose.foundation.layout.Arrangement
@@ -45,18 +45,18 @@ import androidx.compose.ui.unit.dp
 import androidx.core.content.edit
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
-import com.f4.mypet.R
-import com.f4.mypet.navigation.Routes
-import com.f4.mypet.navigation.START
-import com.f4.mypet.ui.components.ButtonComponent
-import com.f4.mypet.ui.components.MyPetSnackBar
-import com.f4.mypet.ui.components.MyPetTopBar
-import com.f4.mypet.ui.screens.profile.list.ListProfileViewModel
-import com.f4.mypet.ui.screens.profile.list.PetItem
-import com.f4.mypet.ui.theme.BlueCheckbox
-import com.f4.mypet.ui.theme.GreenButton
-import com.f4.mypet.ui.theme.LightGrayTint
-import com.f4.mypet.ui.theme.White
+import com.serson.my_pet.R
+import com.serson.my_pet.navigation.Routes
+import com.serson.my_pet.navigation.START
+import com.serson.my_pet.ui.components.ButtonComponent
+import com.serson.my_pet.ui.components.MyPetSnackBar
+import com.serson.my_pet.ui.components.MyPetTopBar
+import com.serson.my_pet.ui.screens.profile.list.ListProfileViewModel
+import com.serson.my_pet.ui.screens.profile.list.PetItem
+import com.serson.my_pet.ui.theme.BlueCheckbox
+import com.serson.my_pet.ui.theme.GreenButton
+import com.serson.my_pet.ui.theme.LightGrayTint
+import com.serson.my_pet.ui.theme.White
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.cancelChildren
 
