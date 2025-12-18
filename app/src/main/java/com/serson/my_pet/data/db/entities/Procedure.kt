@@ -1,4 +1,4 @@
-package com.f4.mypet.data.db.entities
+package com.serson.my_pet.data.db.entities
 
 import androidx.compose.runtime.Stable
 import androidx.room.ColumnInfo

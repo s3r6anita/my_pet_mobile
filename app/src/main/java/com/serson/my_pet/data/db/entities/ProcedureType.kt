@@ -5,6 +5,7 @@ import androidx.room.Embedded
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import androidx.room.Relation
+import com.serson.my_pet.data.db.entities.ProcedureTitle
 
 @Entity
 data class ProcedureType(
