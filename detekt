@@ -1,0 +1,47 @@
+#!/bin/bash
+
+# Прерываем выполнение при любой ошибке (exit code != 0)
+set -e
+
+ROOT_FOLDER=build/bin
+VERSION=1.23.5
+DETEKT_BIN=$ROOT_FOLDER/detekt-cli-$VERSION/bin/detekt-cli
+
+# 1. Скачиваем Detekt, если его нет
+if [ ! -f "$DETEKT_BIN" ]; then
+    echo "Detekt CLI not found. Downloading version $VERSION..."
+    mkdir -p $ROOT_FOLDER
+    rm -f $ROOT_FOLDER/detekt-*
+
+    curl -sSLO https://github.com/detekt/detekt/releases/download/v$VERSION/detekt-cli-$VERSION.zip
+    unzip -q detekt-cli-$VERSION.zip -d $ROOT_FOLDER
+    rm detekt-cli-$VERSION.zip
+
+    chmod +x $DETEKT_BIN
+fi
+
+echo "Running Detekt..."
+
+# 2. Запускаем Detekt
+# Если будут ошибки, Detekt вернет exit code 1, и скрипт завершится (благодаря set -e)
+# Отчеты сохраняются в папку build/reports/detekt/
+$DETEKT_BIN \
+    --config .github/workflows/assets/detekt.yml \
+    --report xml:build/reports/detekt/detekt.xml \
+    --report html:build/reports/detekt/detekt.html \
+    --base-path .
+
+# 3. Логика для CI (Reviewdog)
+if [ -n "$CI" ]; then
+    echo "Running Reviewdog..."
+    export REVIEWDOG_GITHUB_API_TOKEN="${GITHUB_TOKEN}"
+
+    cat build/reports/detekt/detekt.xml | reviewdog -f=checkstyle \
+        -name="detekt" \
+        -reporter="github-pr-review" \
+        -fail-on-error="true"
+fi
+
+# 4. Сообщение об успехе (выводится только если предыдущие команды не упали)
+# \033[0;32m — включает зеленый цвет, \033[0m — сбрасывает цвет
+echo -e "\033[0;32mSuccess. Not found errors\033[0m"
