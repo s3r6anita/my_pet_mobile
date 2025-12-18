@@ -5,9 +5,9 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
-import com.f4.mypet.data.db.Converters
-import com.f4.mypet.data.db.daos.FrequencyDAO
-import com.f4.mypet.data.db.daos.MedRecordDAO
+import com.serson.my_pet.data.db.Converters
+import com.serson.my_pet.data.db.daos.FrequencyDAO
+import com.serson.my_pet.data.db.daos.MedRecordDAO
 import com.serson.my_pet.data.db.daos.PetDAO
 import com.serson.my_pet.data.db.daos.PrTitleDAO
 import com.serson.my_pet.data.db.daos.ProcedureDAO

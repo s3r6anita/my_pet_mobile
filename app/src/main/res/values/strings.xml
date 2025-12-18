@@ -20,6 +20,8 @@
     <string name="edit_button_description">Редактировать</string>
     <string name="unknown">Неизвестно</string>
     <string name="error">Ошибка</string>
+    <string name="incorrect_date">Введена некорректная дата</string>
+
 
     <!-- Экран со списком питомцев  -->
     <string name="list_profile_screen_title">Мои питомцы</string>
@@ -27,11 +29,30 @@
 
     <!-- Экран создания профиля питомце  -->
     <string name="create_profile_screen_title">Создание профиля</string>
-
+    <string name="information_about_pet">Информация о питомце</string>
+    <string name="pet">Питомец</string>
+    <string name="pet_name">Кличка</string>
+    <string name="pet_view">Вид</string>
+    <string name="pet_sex">Пол</string>
+    <string name="pet_color">Окрас</string>
+    <string name="pet_breed">Порода</string>
+    <string name="pet_coat">Тип шерсти</string>
+    <string name="pet_microchip">Номер микрочипа</string>
+    <string name="pet_birthday">Дата рождения</string>
+    <string name="pet_photo_description">Фото питомца</string>
+    <string name="male_sex">Самец</string>
+    <string name="female_sex">Самка</string>
+    <string name="date_format">Формат даты: ДД.ММ.ГГГГ</string>
 
     <!-- Экран изменения профиля питомца  -->
     <string name="update_profile_screen_title">Изменение профиля</string>
-
+    <string name="update_profile_screen_title">Изменение профиля</string>
+    <string name="create_profile_screen_title">Создание профиля</string>
+    <string name="create_profile_sex">Пол</string>
+    <string name="create_profile_successful_pet_creation">Питомец успешно добавлен</string>
+    <string name="create_profile_successful_pet_update">Питомец успешно обновлен</string>
+    <string name="create_profile_supp">Используйте буквы</string>
+    <string name="create_profile_supp_chip">Номер должен состоять из 15 цифр</string>
 
     <!-- Экран детальной информации о питомце  -->
     <string name="profile_screen_title">Профиль</string>
@@ -60,5 +81,22 @@
     <string name="list_procedure_screen_add_procedure">Добавить процедуру</string>
     <string name="create_procedure_screen_title">Создание процедуры</string>
     <string name="update_procedure_screen_title">Редактирование процедуры</string>
+
+    <!-- Экран создания процедуры-->
+    <string name="creation_procedure_screen_title">Создание процедуры</string>
+    <string name="creation_procedure_screen_period">Период</string>
+    <string name="creation_procedure_screen_frequence">Периодичность</string>
+    <string name="creation_procedure_screen_name">Название</string>
+    <string name="creation_procedure_screen_pick_time">Выберите время</string>
+    <string name="creation_procedure_screen_open_clock">Открыть часы</string>
+    <string name="creation_procedure_screen_duration">Время выполнения</string>
+    <string name="creation_procedure_screen_time_format">Формат времени: ЧЧ.ММ</string>
+    <string name="creation_procedure_screen_open_calendar">Открыть календарь</string>
+    <string name="creation_procedure_screen_date_of_completion">Дата выполнения</string>
+    <string name="creation_procedure_screen_notes_format">Формат времени: ЧЧ.ММ</string>
+    <string name="creation_procedure_screen_time_before_notification">За сколько минут напомнить</string>
+    <string name="creation_procedure_screen_notes">Заметки</string>
+    <string name="creation_procedure_screen_procedure_type">Тип процедуры</string>
+    <string name="procedure_screen_unknown_procedure_title">Неизвестное название</string>
 
 </resources>

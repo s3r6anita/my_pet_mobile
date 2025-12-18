@@ -1,7 +1,7 @@
-package com.f4.mypet.data.db
+package com.serson.my_pet.data.db
 
 import androidx.room.TypeConverter
-import com.f4.mypet.util.PetDateTimeFormatter
+import com.serson.my_pet.util.PetDateTimeFormatter
 import java.time.LocalDate
 
 import java.time.LocalDateTime
