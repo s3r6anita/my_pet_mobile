@@ -1,7 +1,7 @@
 package com.serson.my_pet.data.db
 
-import com.f4.mypet.data.db.daos.FrequencyDAO
-import com.f4.mypet.data.db.daos.MedRecordDAO
+import com.serson.my_pet.data.db.daos.FrequencyDAO
+import com.serson.my_pet.data.db.daos.MedRecordDAO
 import com.serson.my_pet.data.db.daos.PetDAO
 import com.serson.my_pet.data.db.daos.PrTitleDAO
 import com.serson.my_pet.data.db.daos.ProcedureDAO

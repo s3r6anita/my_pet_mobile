@@ -1,4 +1,4 @@
-package com.f4.mypet.data.db.daos
+package com.serson.my_pet.data.db.daos
 
 import androidx.room.Dao
 import androidx.room.Delete
