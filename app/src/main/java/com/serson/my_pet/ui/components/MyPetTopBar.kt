@@ -33,16 +33,16 @@ fun MyPetTopBar(
         },
         scrollBehavior = TopAppBarDefaults.enterAlwaysScrollBehavior(),
         navigationIcon = {
-            if (text == stringResource(Routes.BottomBarRoutes.Profile.title)) {
-                Row {
-                    IconButton(onClick = onFeedbackClick) {
-                        Icon(
-                            imageVector = Icons.Filled.Email,
-                            contentDescription = stringResource(R.string.feedback_screen)
-                        )
-                    }
-                }
-            }
+//            if (text == stringResource(Routes.BottomBarRoutes.Profile.title)) {
+//                Row {
+//                    IconButton(onClick = onFeedbackClick) {
+//                        Icon(
+//                            imageVector = Icons.Filled.Email,
+//                            contentDescription = stringResource(R.string.feedback_screen)
+//                        )
+//                    }
+//                }
+//            }
             if (canNavigateBack) {
                 IconButton(onClick = navigateUp) {
                     Icon(

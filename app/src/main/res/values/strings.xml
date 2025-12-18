@@ -1,5 +1,9 @@
 <resources>
     <string name="app_name">My Pet</string>
+    <!-- Общее -->
+    <string name="clear">Очистить</string>
+    <string name="icon_description">Icon</string>
+    <string name="back_button">Назад</string>
 
     <!-- Экран со списком питомцев  -->
     <string name="list_profile_screen_title">Мои питомцы</string>
