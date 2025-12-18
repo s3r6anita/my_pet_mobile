@@ -13,13 +13,9 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.selection.toggleable
 import androidx.compose.foundation.verticalScroll
-import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ExitToApp
 import androidx.compose.material.icons.filled.Add
-import androidx.compose.material.pullrefresh.PullRefreshIndicator
-import androidx.compose.material.pullrefresh.pullRefresh
-import androidx.compose.material.pullrefresh.rememberPullRefreshState
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Checkbox
 import androidx.compose.material3.CheckboxDefaults
@@ -60,7 +56,7 @@ import com.serson.my_pet.ui.theme.White
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.cancelChildren
 
-@OptIn(ExperimentalMaterialApi::class)
+
 @Composable
 fun SuccessListProfileScreen(
     snackbarHostState: SnackbarHostState,
@@ -74,12 +70,6 @@ fun SuccessListProfileScreen(
     val preferences = LocalContext.current.getSharedPreferences("pref", Context.MODE_PRIVATE)
     val value = preferences.getBoolean("rememberUserChoice", true)
     val (rememberUserChoice, onStateChange) = remember { mutableStateOf(value) }
-
-    val isRefreshing by viewModel.isRefreshing.collectAsState()
-    val pullRefreshState = rememberPullRefreshState(
-        refreshing = isRefreshing,
-        onRefresh = { viewModel.getPetsProfiles() }
-    )
 
     preferences.edit {
         putBoolean("rememberUserChoice", rememberUserChoice)
@@ -120,7 +110,6 @@ fun SuccessListProfileScreen(
             Column(
                 modifier = Modifier
                     .fillMaxSize()
-                    .pullRefresh(pullRefreshState)
                     .padding(innerPadding)
                     .padding(top = 20.dp, start = 20.dp, end = 20.dp),
                 horizontalAlignment = Alignment.CenterHorizontally,
@@ -195,11 +184,6 @@ fun SuccessListProfileScreen(
                 borderColor = GreenButton
             )
 
-            PullRefreshIndicator(
-                refreshing = isRefreshing,
-                state = pullRefreshState,
-                modifier = Modifier.align(Alignment.TopCenter)
-            )
         }
     }
 }
