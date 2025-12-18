@@ -296,11 +296,10 @@ fun SuccessCUProcedureScreen(
                         title = title.copy(type = selectedType.id)
                         viewModel.createProcedure(procedure, title)
 
+                    } else {
+                        title = title.copy(type = selectedType.id)
+                        viewModel.updateProcedure(procedure, title)
                     }
-//                    else {
-//                        title = title.copy(type = selectedType.id)
-//                        viewModel.updateProcedure(procedure, title)
-//                    }
                     if (procedure.reminder != null) {
                         createDelayedNotification.value = true
                     }

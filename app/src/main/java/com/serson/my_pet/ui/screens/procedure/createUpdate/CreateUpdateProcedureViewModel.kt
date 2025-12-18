@@ -94,28 +94,12 @@ class CreateUpdateProcedureViewModel @Inject constructor(
         }
     }
 
-//    fun updateProcedure(procedure: Procedure, title: ProcedureTitle) {
-//        viewModelScope.launch(Dispatchers.IO) {
-//            when (val responseTitle = networkRepository.updateTitle(title)) {
-//                is NetworkResult.Success -> {
-//                    repository.updateTitle(title)
-//
-//                    when (val responseProcedure = networkRepository.updateProcedure(procedure)) {
-//                        is NetworkResult.Success -> {
-//                            _msg.value = null
-//                            repository.updateProcedure(procedure)
-//                        }
-//                        is NetworkResult.Error -> {
-//                            _msg.value = responseProcedure.msg
-//                        }
-//                    }
-//                }
-//                is NetworkResult.Error -> {
-//                    _msg.value = responseTitle.msg
-//                }
-//            }
-//        }
-//    }
+    fun updateProcedure(procedure: Procedure, title: ProcedureTitle) {
+        viewModelScope.launch(Dispatchers.IO) {
+            repository.updateTitle(title)
+            repository.updateProcedure(procedure)
+        }
+    }
 
     fun resetMsg() {
         _msg.value = ""
