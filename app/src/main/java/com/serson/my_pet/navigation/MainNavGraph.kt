@@ -7,7 +7,6 @@ import androidx.navigation.NavType
 import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
 import androidx.navigation.navigation
-import com.serson.my_pet.ui.screens.profile.createUpdate.CreateUpdateProfileScreen
 import com.serson.my_pet.ui.screens.profile.list.ListProfileScreen
 import kotlinx.coroutines.CoroutineScope
 
@@ -52,12 +51,12 @@ fun NavGraphBuilder.mainNavGraph(
 
         /** создание профиля */
         composable(route = Routes.CreateProfile.route) {
-            CreateUpdateProfileScreen(
-                navController = navController,
-                snackbarHostState = snackbarHostState,
-                isCreateScreen = true,
-                globalScope = globalScope
-            )
+//            CreateUpdateProfileScreen(
+//                navController = navController,
+//                snackbarHostState = snackbarHostState,
+//                isCreateScreen = true,
+//                globalScope = globalScope
+//            )
         }
 
         /** обновление профиля */
