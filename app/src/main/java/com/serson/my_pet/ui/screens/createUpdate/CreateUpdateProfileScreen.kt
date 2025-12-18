@@ -1,0 +1,466 @@
+package com.serson.my_pet.ui.screens.profile.createUpdate
+
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.selection.selectable
+import androidx.compose.foundation.selection.selectableGroup
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.foundation.verticalScroll
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Clear
+import androidx.compose.material.icons.filled.DateRange
+import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.DatePicker
+import androidx.compose.material3.DatePickerDialog
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.OutlinedTextField
+import androidx.compose.material3.RadioButton
+import androidx.compose.material3.Scaffold
+import androidx.compose.material3.SnackbarHost
+import androidx.compose.material3.SnackbarHostState
+import androidx.compose.material3.Text
+import androidx.compose.material3.TextButton
+import androidx.compose.material3.rememberDatePickerState
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.runtime.setValue
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.semantics.Role
+import androidx.compose.ui.text.input.KeyboardType
+import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.navigation.NavHostController
+import com.serson.my_pet.R
+import com.serson.my_pet.navigation.Routes
+import com.serson.my_pet.ui.components.ButtonComponent
+import com.serson.my_pet.ui.components.MyPetSnackBar
+import com.serson.my_pet.ui.components.MyPetTopBar
+import com.serson.my_pet.ui.components.SHOWSNACKDURATION
+import com.serson.my_pet.ui.components.StatusDialog
+import com.serson.my_pet.ui.screens.LoadingScreen
+import com.serson.my_pet.ui.theme.GreenButton
+import com.serson.my_pet.ui.theme.Transparent
+import com.serson.my_pet.util.PastOrPresentSelectableDates
+import com.serson.my_pet.util.PetDateTimeFormatter
+import com.serson.my_pet.util.validate
+import com.serson.my_pet.util.validateBirthday
+import com.serson.my_pet.util.validateMicrochipNumber
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
+import java.time.Instant
+import java.time.ZoneId
+
+@Composable
+@OptIn(ExperimentalMaterial3Api::class)
+@Suppress("CyclomaticComplexMethod", "LongMethod", "LongParameterList")
+fun CreateUpdateProfileScreen(
+    navController: NavHostController,
+    snackbarHostState: SnackbarHostState,
+    isCreateScreen: Boolean,
+    globalScope: () -> CoroutineScope,
+    profileId: Int = -1,
+    viewModel: CreateUpdateProfileViewModel = hiltViewModel()
+) {
+    val context = LocalContext.current
+    val scope = rememberCoroutineScope()
+    val msg by viewModel.msg.collectAsState()
+    val petDB by viewModel.petUiState.collectAsState()
+    var pet by remember { mutableStateOf(petDB) }
+
+    var showStatusDialog by remember { mutableStateOf(false) }
+
+    LaunchedEffect(Unit) {
+        scope.launch {
+            viewModel.getPetProfile(profileId)
+        }
+    }
+
+    LaunchedEffect(petDB) {
+        pet = petDB
+    }
+
+    if (showStatusDialog) {
+        StatusDialog(msg) {
+            showStatusDialog = !showStatusDialog
+            viewModel.resetMsg()
+        }
+    }
+
+    LaunchedEffect(msg) {
+        if (msg != null && msg != "") {
+            showStatusDialog = true
+        }
+        if (msg == null) {
+            if (isCreateScreen) {
+                navController.navigate(Routes.ListProfile.route) {
+                    popUpTo(Routes.ListProfile.route) {
+                        inclusive = true
+                    }
+                    launchSingleTop = true
+                }
+            } else {
+                navController.navigateUp()
+            }
+        }
+    }
+
+    if (pet.id == -1 && !isCreateScreen) {
+        LoadingScreen()
+    } else {
+        Scaffold(
+            topBar = {
+                MyPetTopBar(
+                    text = stringResource(
+                        if (isCreateScreen)
+                            Routes.CreateProfile.title
+                        else
+                            Routes.UpdateProfile.title
+                    ),
+                    canNavigateBack = true,
+                    navigateUp = { navController.navigateUp() }
+                )
+            },
+            snackbarHost = {
+                SnackbarHost(
+                    hostState = snackbarHostState
+                ) {
+                    MyPetSnackBar(it.visuals.message)
+                }
+            }
+        ) { innerPadding ->
+            Column(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .padding(20.dp)
+                    .padding(innerPadding)
+                    .verticalScroll(rememberScrollState()),
+                horizontalAlignment = Alignment.CenterHorizontally,
+                verticalArrangement = Arrangement.Top
+            ) {
+                val modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(vertical = 2.dp)
+
+                // пол
+                val radioOptions = listOf("Самец", "Самка")
+                val selectedOption by remember {
+                    mutableStateOf(radioOptions[0])
+                }
+                Row(
+                    modifier
+                        .selectableGroup()
+                        .padding(vertical = 10.dp),
+                    horizontalArrangement = Arrangement.Start,
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    Text(
+                        text = stringResource(id = R.string.create_profile_sex),
+                        style = MaterialTheme.typography.bodyLarge,
+                        modifier = Modifier.padding(end = 20.dp)
+                    )
+
+                    radioOptions.forEach { text ->
+                        Column(
+                        ) {
+                            Row(
+                                modifier = Modifier
+                                    .selectable(
+                                        selected = (text == selectedOption),
+                                        onClick = { pet = pet.copy(sex = text) },
+                                        role = Role.RadioButton
+                                    )
+                                    .padding(horizontal = 10.dp),
+                            ) {
+                                RadioButton(
+                                    selected = (text == pet.sex),
+                                    onClick = null
+                                )
+                                Text(
+                                    text = text,
+                                    style = MaterialTheme.typography.bodyLarge,
+                                    modifier = Modifier.padding(start = 10.dp)
+                                )
+                            }
+                        }
+                    }
+                }
+                // кличка
+                var nameIsCorrect by remember { mutableStateOf(!isCreateScreen) }
+                OutlinedTextField(
+                    value = pet.name,
+                    singleLine = true,
+                    shape = RoundedCornerShape(8.dp),
+                    onValueChange = {
+                        nameIsCorrect = validate(it)
+                        pet = pet.copy(name = it)
+                    },
+                    label = { Text(stringResource(id = R.string.pet_name)) },
+                    trailingIcon = {
+                        ClearIcon {
+                            nameIsCorrect = false
+                            pet = pet.copy(name = "")
+                        }
+                    },
+                    supportingText = {
+                        if (!nameIsCorrect && pet.name != "") Text(stringResource(id = R.string.create_profile_supp))
+                    },
+                    isError = !nameIsCorrect,
+                    modifier = modifier
+                )
+                // вид
+                var kindIsCorrect by remember { mutableStateOf(!isCreateScreen) }
+                OutlinedTextField(
+                    value = pet.kind,
+                    shape = RoundedCornerShape(8.dp),
+                    singleLine = true,
+                    onValueChange = {
+                        kindIsCorrect = validate(it)
+                        pet = pet.copy(kind = it)
+                    },
+                    label = { Text(stringResource(id = R.string.pet_view)) },
+                    trailingIcon = {
+                        ClearIcon {
+                            kindIsCorrect = false
+                            pet = pet.copy(kind = "")
+                        }
+                    },
+                    supportingText = {
+                        if (!kindIsCorrect && pet.kind != "") Text(stringResource(id = R.string.create_profile_supp))
+                    },
+                    isError = !kindIsCorrect,
+                    modifier = modifier
+                )
+                // порода
+                var breedIsCorrect by remember { mutableStateOf(!isCreateScreen) }
+                OutlinedTextField(
+                    value = pet.breed,
+                    singleLine = true,
+                    shape = RoundedCornerShape(8.dp),
+                    onValueChange = {
+                        breedIsCorrect = validate(it)
+                        pet = pet.copy(breed = it)
+                    },
+                    label = { Text(stringResource(id = R.string.pet_breed)) },
+                    trailingIcon = {
+                        ClearIcon {
+                            breedIsCorrect = false
+                            pet = pet.copy(breed = "")
+                        }
+                    },
+                    supportingText = {
+                        if (!breedIsCorrect && pet.breed != "") Text(stringResource(id = R.string.create_profile_supp))
+                    },
+                    isError = !breedIsCorrect,
+                    modifier = modifier
+                )
+                // шерсть
+                var coatIsCorrect by remember { mutableStateOf(!isCreateScreen) }
+                OutlinedTextField(
+                    value = pet.coat,
+                    singleLine = true,
+                    shape = RoundedCornerShape(8.dp),
+                    onValueChange = {
+                        coatIsCorrect = validate(it)
+                        pet = pet.copy(coat = it)
+                    },
+                    label = { Text(stringResource(id = R.string.pet_coat)) },
+                    trailingIcon = {
+                        ClearIcon {
+                            coatIsCorrect = false
+                            pet = pet.copy(coat = "")
+                        }
+                    },
+                    supportingText = {
+                        if (!coatIsCorrect && pet.coat != "") Text(stringResource(id = R.string.create_profile_supp))
+                    },
+                    isError = !coatIsCorrect,
+                    modifier = modifier
+                )
+                // окрас
+                var colorIsCorrect by remember { mutableStateOf(!isCreateScreen) }
+                OutlinedTextField(
+                    value = pet.color,
+                    singleLine = true,
+                    shape = RoundedCornerShape(8.dp),
+                    onValueChange = {
+                        colorIsCorrect = validate(it)
+                        pet = pet.copy(color = it)
+                    },
+                    label = { Text(stringResource(id = R.string.pet_color)) },
+                    trailingIcon = {
+                        ClearIcon {
+                            colorIsCorrect = false
+                            pet = pet.copy(coat = "")
+                        }
+                    },
+                    supportingText = {
+                        if (!colorIsCorrect && pet.color != "") Text(stringResource(id = R.string.create_profile_supp))
+                    },
+                    isError = !colorIsCorrect,
+                    modifier = modifier
+                )
+
+                // дата рождения
+                var openDialog by remember { mutableStateOf(false) }
+                val datePickerState =
+                    rememberDatePickerState(selectableDates = PastOrPresentSelectableDates)
+                var dateIsCorrect by remember { mutableStateOf(true) }
+
+                OutlinedTextField(
+                    //TODO: отформатировать дату
+                    value = pet.birthday.format(PetDateTimeFormatter.date),
+                    onValueChange = { },
+                    shape = RoundedCornerShape(8.dp),
+                    label = { Text(stringResource(id = R.string.pet_birthday)) },
+                    supportingText = { Text(text = stringResource(id = R.string.date_format)) },
+                    readOnly = true,
+                    trailingIcon = {
+                        IconButton(onClick = { openDialog = true }) {
+                            Icon(
+                                Icons.Default.DateRange,
+                                contentDescription = stringResource(id = R.string.show_calendar)
+                            )
+                        }
+                    },
+                    isError = !dateIsCorrect,
+                    modifier = modifier
+                )
+                if (openDialog) {
+                    DatePickerDialog(
+                        onDismissRequest = {
+                            openDialog = false
+                        },
+                        confirmButton = {
+                            TextButton(
+                                onClick = {
+                                    openDialog = false
+                                    pet = pet.copy(
+                                        birthday =
+                                        Instant.ofEpochMilli(
+                                            datePickerState.selectedDateMillis ?: 0
+                                        ).atZone(ZoneId.systemDefault()).toLocalDate()
+                                    )
+                                    try {
+                                        dateIsCorrect =
+                                            validateBirthday(pet.birthday)
+                                    } catch (e: IllegalArgumentException) {
+                                        globalScope().launch {
+                                            snackbarHostState.showSnackbar(
+                                                e.message
+                                                    ?: context.resources.getString(R.string.incorrect_date)
+                                            )
+                                        }
+                                    }
+                                },
+                            ) {
+                                Text(stringResource(id = R.string.confirm_button_description))
+                            }
+                        },
+                        dismissButton = {
+                            TextButton(onClick = { openDialog = false }) {
+                                Text(stringResource(id = R.string.cancel_button_description))
+                            }
+                        }
+                    ) {
+                        DatePicker(state = datePickerState)
+                    }
+                }
+
+                // номер микрочипа
+                var microchipNumberIsCorrect by remember { mutableStateOf(!isCreateScreen) }
+                OutlinedTextField(
+                    value = pet.microchipNumber,
+                    singleLine = true,
+                    shape = RoundedCornerShape(8.dp),
+                    onValueChange = {
+                        microchipNumberIsCorrect = validateMicrochipNumber(it)
+                        pet = pet.copy(microchipNumber = it)
+                    },
+                    label = { Text(stringResource(id = R.string.pet_microchip)) },
+                    trailingIcon = {
+                        ClearIcon {
+                            microchipNumberIsCorrect = false
+                            pet = pet.copy(microchipNumber = "")
+                        }
+                    },
+                    keyboardOptions = KeyboardOptions(
+                        keyboardType = KeyboardType.Number
+                    ),
+                    supportingText = {
+                        if (!microchipNumberIsCorrect && pet.microchipNumber != "") Text(
+                            stringResource(
+                                id = R.string.create_profile_supp_chip
+                            )
+                        )
+                    },
+                    isError = !microchipNumberIsCorrect,
+                    modifier = modifier
+                )
+
+                // сохранение
+                ButtonComponent(
+                    onClick = {
+                        globalScope().launch {
+                            val job = launch {
+                                if (msg == null)
+                                    snackbarHostState.showSnackbar(
+                                        if (isCreateScreen)
+                                            context.resources.getString(R.string.create_profile_successful_pet_creation)
+                                        else
+                                            context.resources.getString(R.string.create_profile_successful_pet_update)
+                                    )
+                            }
+                            delay(SHOWSNACKDURATION)
+                            job.cancel()
+                        }
+                        if (isCreateScreen) {
+                            scope.launch {
+                                viewModel.createPet(pet)
+                            }
+                        } else {
+                            scope.launch {
+                                viewModel.updatePet(pet)
+                            }
+                        }
+                    },
+                    text = stringResource(id = R.string.save_button_description),
+                    color = ButtonDefaults.buttonColors(containerColor = GreenButton),
+                    textColor = Color.White,
+                    borderColor = Transparent,
+                    modifier = Modifier.fillMaxWidth(),
+                    enabled = nameIsCorrect && kindIsCorrect && breedIsCorrect &&
+                            coatIsCorrect && colorIsCorrect && dateIsCorrect && microchipNumberIsCorrect,
+                )
+            }
+        }
+    }
+}
+
+@Composable
+fun ClearIcon(clear: () -> Unit) {
+    IconButton(onClick = clear) {
+        Icon(
+            Icons.Default.Clear,
+            contentDescription = stringResource(id = R.string.clear)
+        )
+    }
+}
