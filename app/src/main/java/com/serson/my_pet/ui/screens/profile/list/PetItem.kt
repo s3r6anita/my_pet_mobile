@@ -25,13 +25,13 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
-import com.f4.mypet.R
-import com.f4.mypet.data.db.entities.Pet
-import com.f4.mypet.navigation.Routes
-import com.f4.mypet.navigation.START
-import com.f4.mypet.ui.components.BottomBarData
-import com.f4.mypet.ui.theme.LightBlueBackground
-import com.f4.mypet.ui.theme.LightGrayTint
+import com.serson.my_pet.R
+import com.serson.my_pet.data.db.entities.Pet
+import com.serson.my_pet.navigation.Routes
+import com.serson.my_pet.navigation.START
+import com.serson.my_pet.ui.components.BottomBarData
+import com.serson.my_pet.ui.theme.LightBlueBackground
+import com.serson.my_pet.ui.theme.LightGrayTint
 
 @Composable
 fun PetItem(
