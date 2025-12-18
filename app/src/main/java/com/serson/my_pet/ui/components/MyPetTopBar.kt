@@ -1,0 +1,58 @@
+package com.serson.my_pet.ui.components
+
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.RowScope
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.filled.ArrowBack
+import androidx.compose.material.icons.filled.Email
+import androidx.compose.material3.CenterAlignedTopAppBar
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
+import androidx.compose.material3.Text
+import androidx.compose.material3.TopAppBarDefaults
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
+import com.serson.my_pet.R
+import com.serson.my_pet.navigation.Routes
+
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+fun MyPetTopBar(
+    text: String,
+    navigateUp: () -> Unit,
+    modifier: Modifier = Modifier,
+    canNavigateBack: Boolean = false,
+    onFeedbackClick: () -> Unit = {},
+    actions: @Composable() RowScope.() -> Unit = { },
+) {
+    CenterAlignedTopAppBar(
+        title = {
+            Text(text = text)
+        },
+        scrollBehavior = TopAppBarDefaults.enterAlwaysScrollBehavior(),
+        navigationIcon = {
+//            if (text == stringResource(Routes.BottomBarRoutes.Profile.title)) {
+//                Row {
+//                    IconButton(onClick = onFeedbackClick) {
+//                        Icon(
+//                            imageVector = Icons.Filled.Email,
+//                            contentDescription = stringResource(R.string.feedback_screen)
+//                        )
+//                    }
+//                }
+//            }
+            if (canNavigateBack) {
+                IconButton(onClick = navigateUp) {
+                    Icon(
+                        imageVector = Icons.AutoMirrored.Filled.ArrowBack,
+                        contentDescription = stringResource(R.string.back_button),
+                    )
+                }
+            }
+        },
+        actions = actions,
+        modifier = modifier
+    )
+}
