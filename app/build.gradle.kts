@@ -54,8 +54,21 @@ dependencies {
     implementation(libs.androidx.compose.ui.graphics)
     implementation(libs.androidx.compose.ui.tooling.preview)
     implementation(libs.androidx.compose.material3)
+    implementation("androidx.compose.material:material-icons-extended:1.7.7")
 
     debugImplementation(libs.androidx.compose.ui.tooling)
+
+    // retrofit2
+    implementation(libs.converter.gson)
+    implementation(libs.retrofit)
+
+    // okhttp3
+    implementation(libs.logging.interceptor)
+    implementation(libs.okhttp)
+
+    // datastore
+    implementation(libs.androidx.datastore.preferences)
+    implementation(libs.androidx.datastore)
 
     // Room
     ksp(libs.androidx.room.compiler)

@@ -1,17 +1,13 @@
 package com.serson.my_pet.ui.screens.profile.list
 
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.Scaffold
 import androidx.compose.material3.SnackbarHostState
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
-import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.rememberCoroutineScope
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
-import com.serson.my_pet.ui.theme.MyPetTheme
 import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.launch
 
 @Composable
 fun ListProfileScreen(
@@ -20,25 +16,14 @@ fun ListProfileScreen(
     globalScope: () -> CoroutineScope,
     viewModel: ListProfileViewModel = hiltViewModel()
 ) {
-    Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-        Greeting(
-            modifier = Modifier.padding(innerPadding)
-        )
-    }
-}
+    val localScope = rememberCoroutineScope()
+    //val uiState by viewModel.uiState.collectAsState()
 
-@Composable
-fun Greeting(modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello from ListProfileScreen",
-        modifier = modifier
-    )
-}
-
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-    MyPetTheme {
-        Greeting()
+    LaunchedEffect(Unit) {
+        localScope.launch {
+            viewModel.getPetsProfiles()
+        }
     }
+
+
 }
