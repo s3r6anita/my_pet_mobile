@@ -16,7 +16,7 @@ import com.serson.my_pet.data.db.entities.MedRecord
 import com.serson.my_pet.data.db.entities.Pet
 import com.serson.my_pet.data.db.entities.Procedure
 import com.serson.my_pet.data.db.entities.ProcedureTitle
-import com.f4.mypet.data.db.entities.ProcedureType
+import com.serson.my_pet.data.db.entities.ProcedureType
 
 
 @Database(
