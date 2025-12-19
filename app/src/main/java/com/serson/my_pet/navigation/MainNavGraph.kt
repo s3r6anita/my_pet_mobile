@@ -13,6 +13,7 @@ import com.serson.my_pet.ui.screens.procedure.list.ListProcedureScreen
 import com.serson.my_pet.ui.screens.procedure.show.ProcedureScreen
 import com.serson.my_pet.ui.screens.profile.createUpdate.CreateUpdateProfileScreen
 import com.serson.my_pet.ui.screens.profile.list.ListProfileScreen
+import com.serson.my_pet.ui.screens.profile.show.ProfileScreen
 import kotlinx.coroutines.CoroutineScope
 
 fun NavGraphBuilder.mainNavGraph(
@@ -46,12 +47,12 @@ fun NavGraphBuilder.mainNavGraph(
                 }
             )
         ) { backStackEntry ->
-//            ProfileScreen(
-//                navController = navController,
-//                snackbarHostState = snackbarHostState,
-//                profileId = backStackEntry.arguments?.getInt("profileId") ?: -1,
-//                canNavigateBack = backStackEntry.arguments?.getBoolean("canNavigateBack") ?: true
-//            )
+            ProfileScreen(
+                navController = navController,
+                snackbarHostState = snackbarHostState,
+                profileId = backStackEntry.arguments?.getInt("profileId") ?: -1,
+                canNavigateBack = backStackEntry.arguments?.getBoolean("canNavigateBack") ?: true
+            )
         }
 
         /** создание профиля */
