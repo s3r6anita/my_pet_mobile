@@ -43,12 +43,12 @@ class CreateUpdateProfileViewModel @Inject constructor(
         }
     }
 
-//    fun updatePet(pet: Pet) {
-//        _msg.value = ""
-//        viewModelScope.launch {
-//            repository.updatePet(pet)
-//        }
-//    }
+    fun updatePet(pet: Pet) {
+        viewModelScope.launch {
+            repository.updatePet(pet)
+            _msg.value = null
+        }
+    }
 
     fun resetMsg() {
         _msg.value = ""

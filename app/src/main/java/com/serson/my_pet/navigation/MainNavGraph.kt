@@ -77,13 +77,13 @@ fun NavGraphBuilder.mainNavGraph(
                 }
             )
         ) { backStackEntry ->
-//            CreateUpdateProfileScreen(
-//                navController = navController,
-//                snackbarHostState = snackbarHostState,
-//                isCreateScreen = false,
-//                globalScope = globalScope,
-//                profileId = backStackEntry.arguments?.getInt("profileId") ?: -1
-//            )
+            CreateUpdateProfileScreen(
+                navController = navController,
+                snackbarHostState = snackbarHostState,
+                isCreateScreen = false,
+                globalScope = globalScope,
+                profileId = backStackEntry.arguments?.getInt("profileId") ?: -1
+            )
         }
 
         /** список процедур */
