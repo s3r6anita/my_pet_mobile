@@ -8,6 +8,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
 import androidx.navigation.navigation
 import com.serson.my_pet.ui.screens.bugReport.BugReportScreen
+import com.serson.my_pet.ui.screens.medcard.list.ListMedRecords
 import com.serson.my_pet.ui.screens.procedure.createUpdate.CreateUpdateProcedureScreen
 import com.serson.my_pet.ui.screens.procedure.list.ListProcedureScreen
 import com.serson.my_pet.ui.screens.procedure.show.ProcedureScreen
@@ -144,6 +145,25 @@ fun NavGraphBuilder.mainNavGraph(
                 navController = navController,
                 isCreateScreen = false,
                 procedureId = backStackEntry.arguments?.getInt("procedureId") ?: -1
+            )
+        }
+
+        /** список медицинких записей (медкарта) */
+        composable(
+            route = "${Routes.BottomBarRoutes.ListMedRecords.route}/{profileId}/{canNavigateBack}",
+            arguments = listOf(
+                navArgument(name = "profileId") {
+                    type = NavType.IntType
+                },
+                navArgument(name = "canNavigateBack") {
+                    type = NavType.BoolType
+                }
+            )
+        ) { backStackEntry ->
+            ListMedRecords(
+                navController = navController,
+                profileId = backStackEntry.arguments?.getInt("profileId") ?: -1,
+                canNavigateBack = backStackEntry.arguments?.getBoolean("canNavigateBack") ?: true
             )
         }
 

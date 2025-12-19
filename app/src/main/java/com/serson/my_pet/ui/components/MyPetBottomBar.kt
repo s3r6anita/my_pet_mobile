@@ -28,10 +28,10 @@ sealed class BottomNavigationItems(
         icon = R.drawable.procedures_icon
     )
 
-//    data object MedCard : BottomNavigationItems(
-//        route = Routes.BottomBarRoutes.ListMedRecords,
-//        icon = R.drawable.therapy_icon
-//    )
+    data object MedCard : BottomNavigationItems(
+        route = Routes.BottomBarRoutes.ListMedRecords,
+        icon = R.drawable.therapy_icon
+    )
 
     data object Profile : BottomNavigationItems(
         route = Routes.BottomBarRoutes.Profile,
@@ -43,7 +43,7 @@ data object BottomBarData {
     var selectedItemIndex = 0
     val items = persistentListOf(
         BottomNavigationItems.Procedures,
-//        BottomNavigationItems.MedCard,
+        BottomNavigationItems.MedCard,
         BottomNavigationItems.Profile
     )
 }

@@ -80,7 +80,7 @@
     <string name="create_procedure_screen_title">Создание процедуры</string>
     <string name="update_procedure_screen_title">Редактирование процедуры</string>
 
-    <!-- Экран создания процедуры-->
+    <!-- Экран создания/редактирования процедуры-->
     <string name="creation_procedure_screen_title">Создание процедуры</string>
     <string name="creation_procedure_screen_period">Период</string>
     <string name="creation_procedure_screen_frequence">Периодичность</string>
@@ -97,6 +97,13 @@
     <string name="creation_procedure_screen_procedure_type">Тип процедуры</string>
     <string name="procedure_screen_unknown_procedure_title">Неизвестное название</string>
     <string name="cu_screen_notifications">Уведомления</string>
+
+    <!-- Экран со списком записей медкарты-->
+    <string name="medcard_screen_title">Медкарта</string>
+
+    <!-- Экран создания/редактирования записей медкарты-->
+    <string name="medrecord_screen_title">Запись</string>
+    <string name="create_medrecord_screen_title">Создание записи</string>
 
     <!--  Экран с отчетом об ошибке  -->
     <string name="bug_report_title">Отчет об ошибке</string>
