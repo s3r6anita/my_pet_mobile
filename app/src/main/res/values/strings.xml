@@ -52,6 +52,8 @@
 
     <!-- Экран детальной информации о питомце  -->
     <string name="profile_screen_title">Профиль</string>
+    <string name="profile_screen_delete_pet_text">Вы уверены, что хотите удалить профиль?</string>
+    <string name="profile_screen_delete_pet_title">Удаление профиля</string>
 
     <!-- Экран со списком процедур -->
     <string name="procedure_screen_title">Процедура</string>
