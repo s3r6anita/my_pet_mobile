@@ -51,8 +51,6 @@ import com.serson.my_pet.ui.components.MyPetTopBar
 import com.serson.my_pet.ui.components.StatusDialog
 import com.serson.my_pet.ui.components.TextComponent
 import com.serson.my_pet.ui.screens.LoadingScreen
-import com.serson.my_pet.ui.screens.procedure.show.ProcedureViewModel
-import com.serson.my_pet.ui.screens.procedure.show.RemoveProcedureAlert
 import com.serson.my_pet.ui.theme.GreenButton
 import com.serson.my_pet.ui.theme.LightGreenBackground
 import com.serson.my_pet.ui.theme.RedButton
@@ -70,9 +68,9 @@ fun ProcedureScreen(
 
     // для отображения
     val procedure by viewModel.procedureUiState.collectAsState()
-    val title = viewModel.title
-    val type = viewModel.type
-    val frequency = viewModel.frequency
+    val title by viewModel.title.collectAsState()
+    val type by viewModel.type.collectAsState()
+    val frequency by viewModel.frequency.collectAsState()
     LaunchedEffect(Unit) {
         scope.launch {
             viewModel.getProcedure(procedureId)

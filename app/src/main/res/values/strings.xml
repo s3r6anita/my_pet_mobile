@@ -94,6 +94,7 @@
     <string name="creation_procedure_screen_notes">Заметки</string>
     <string name="creation_procedure_screen_procedure_type">Тип процедуры</string>
     <string name="procedure_screen_unknown_procedure_title">Неизвестное название</string>
+    <string name="cu_screen_notifications">Уведомления</string>
 
     <!--  Экран с отчетом об ошибке  -->
     <string name="bug_report_title">Отчет об ошибке</string>

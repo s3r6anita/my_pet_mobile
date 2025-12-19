@@ -87,10 +87,10 @@ class CreateUpdateProcedureViewModel @Inject constructor(
 
     fun createProcedure(procedure: Procedure, title: ProcedureTitle) {
         viewModelScope.launch(Dispatchers.IO) {
-            repository.insertTitle(title)
-            val procedureWithTitleFreq = procedure.copy(title = 1)
-            _msg.value = null
+            val titleId = repository.insertTitle(title)
+            val procedureWithTitleFreq = procedure.copy(title = titleId)
             repository.insertProcedure(procedureWithTitleFreq)
+            _msg.value = null
         }
     }
 
@@ -98,6 +98,8 @@ class CreateUpdateProcedureViewModel @Inject constructor(
         viewModelScope.launch(Dispatchers.IO) {
             repository.updateTitle(title)
             repository.updateProcedure(procedure)
+            _msg.value = null
+
         }
     }
 
