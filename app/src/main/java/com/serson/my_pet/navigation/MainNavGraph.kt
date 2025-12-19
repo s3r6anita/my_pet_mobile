@@ -187,6 +187,23 @@ fun NavGraphBuilder.mainNavGraph(
             )
         }
 
+        /** изменение медицинской записи */
+        composable(
+            route = "${Routes.UpdateMedRecord.route}/{medRecordId}",
+            arguments = listOf(
+                navArgument(name = "medRecordId") {
+                    type = NavType.IntType
+                }
+            )
+        ) { backStackEntry ->
+            CreateUpdateMedRecordScreen(
+                navController = navController,
+                snackbarHostState = snackbarHostState,
+                isCreateScreen = false,
+                medRecordId = backStackEntry.arguments?.getInt("medRecordId") ?: -1,
+            )
+        }
+
         /** обратная связь **/
         composable(
             route = Routes.BugReport.route

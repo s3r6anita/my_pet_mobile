@@ -104,6 +104,7 @@
     <!-- Экран создания/редактирования записей медкарты-->
     <string name="medrecord_screen_title">Запись</string>
     <string name="create_medrecord_screen_title">Создание записи</string>
+    <string name="update_medrecord_screen_title">Обновление записи</string>
     <string name="cu_medrecord_title_create">Новая запись</string>
     <string name="cu_medrecord_title_update">Редактирование</string>
     <string name="cu_medrecord_name">Название</string>
