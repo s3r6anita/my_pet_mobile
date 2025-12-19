@@ -101,6 +101,17 @@
     <!-- Экран со списком записей медкарты-->
     <string name="medcard_screen_title">Медкарта</string>
 
+    <!-- Экран детальной информации о записи из медкарты  -->
+    <string name="medrecord_delete_button">Удалить</string>
+    <string name="medrecord_delete">Удаление записи</string>
+    <string name="medrecord_question_to_delete">Вы уверены, что хотите удалить запись?</string>
+    <string name="medrecord_cancel_button">Отмена</string>
+    <string name="medrecord_show_title">Запись</string>
+    <string name="medrecord_type">Тип</string>
+    <string name="medrecord_date">Дата</string>
+    <string name="medrecord_notice">Заметки</string>
+    <string name="medrecord_screen_notes">Заметки</string>
+
     <!-- Экран создания/редактирования записей медкарты-->
     <string name="medrecord_screen_title">Запись</string>
     <string name="create_medrecord_screen_title">Создание записи</string>
