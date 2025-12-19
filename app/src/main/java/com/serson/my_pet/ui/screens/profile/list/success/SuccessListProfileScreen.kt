@@ -14,6 +14,7 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.selection.toggleable
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.filled.ContactSupport
 import androidx.compose.material.icons.automirrored.filled.ExitToApp
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.material3.ButtonDefaults
@@ -84,14 +85,13 @@ fun SuccessListProfileScreen(
                 actions = {
                     // кнопка входа
                     IconButton(onClick = {
-                        navController.navigate(START) {
-                            popUpTo(START)
+                        navController.navigate(Routes.BugReport.route) {
                             launchSingleTop = true
                         }
                     }) {
                         Icon(
-                            imageVector = Icons.AutoMirrored.Default.ExitToApp,
-                            contentDescription = stringResource(id = R.string.exit_button_description)
+                            imageVector = Icons.AutoMirrored.Default.ContactSupport,
+                            contentDescription = stringResource(id = R.string.feedback_screen)
                         )
                     }
                 }

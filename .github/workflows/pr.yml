@@ -71,11 +71,13 @@ jobs:
       - name: 🔐 Grant execute permission for gradlew
         run: chmod +x gradlew
 
-      # Делаем всё одной командой Gradle для эффективности
       # testDebugUnitTest - прогон тестов
+      - name: 🧪 Run Tests
+        run: ./gradlew testDebugUnitTest
+
       # assembleDebug - сборка APK
-      - name: 🚀 Build & Run Tests
-        run: ./gradlew testDebugUnitTest assembleDebug
+      - name: 🚀 Build
+        run: ./gradlew assembleDebug
 
       # Загрузка APK как артефакта
       - name: 🔄 Upload Debug APK
