@@ -24,6 +24,7 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import com.serson.my_pet.R
+import com.serson.my_pet.data.db.entities.Pet
 import com.serson.my_pet.navigation.Routes
 import com.serson.my_pet.ui.components.BottomBarData
 import com.serson.my_pet.ui.components.ButtonComponent
@@ -39,14 +40,12 @@ fun SuccessListMedRecords(
     canNavigateBack: Boolean,
     profileId: Int,
     getNavController: () -> NavHostController,
+    pet: Pet,
     viewModel: ListMedRecordsViewModel = hiltViewModel()
 ) {
     val navController = getNavController()
 
     val medRecords by viewModel.medRecordsUiState.collectAsState()
-    val pet = viewModel.pet
-
-
 
     Scaffold(
         topBar = {

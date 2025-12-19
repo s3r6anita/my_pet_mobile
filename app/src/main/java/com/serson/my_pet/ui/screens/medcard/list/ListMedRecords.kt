@@ -23,7 +23,7 @@ fun ListMedRecords(
     viewModel: ListMedRecordsViewModel = hiltViewModel()
 ) {
     val scope = rememberCoroutineScope()
-    val pet = viewModel.pet
+    val pet by viewModel.pet.collectAsState()
 
     LaunchedEffect(Unit) {
         scope.launch {
@@ -31,13 +31,14 @@ fun ListMedRecords(
         }
     }
 
-    if (pet.id == -1) {
+    if (pet == null) {
         LoadingScreen()
     } else {
         SuccessListMedRecords(
             canNavigateBack,
             profileId,
-            { navController }
+            { navController },
+            pet!!
         )
     }
 }

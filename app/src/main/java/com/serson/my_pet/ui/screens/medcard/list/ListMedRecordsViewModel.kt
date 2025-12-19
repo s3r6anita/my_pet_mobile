@@ -22,15 +22,12 @@ class ListMedRecordsViewModel @Inject constructor(
     private val _msg = MutableStateFlow("")
     val msg = _msg.asStateFlow()
 
-    var pet = Pet(
-        "", "", "", "Самец",
-        LocalDate.now(),
-        "", "", "", 0
-    )
+    private val _pet = MutableStateFlow<Pet?>(null)
+    val pet = _pet.asStateFlow()
 
     fun getPetsMedRecords(petId: Int) {
         viewModelScope.launch(Dispatchers.IO) {
-            pet = repository.getPetForCU(petId)
+            _pet.value = repository.getPetForCU(petId)
             repository.getMedRecordsForPet(petId).collect { medRecords ->
                 _medRecordsUiState.value = medRecords
             }
