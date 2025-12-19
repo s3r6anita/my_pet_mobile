@@ -64,7 +64,7 @@ fun MedRecordItem(
         ) {
             Row {
                 Image(
-                    painter = painterResource(id = R.drawable.therapy_icon),
+                    painter = painterResource(id = R.drawable.medrecord_icon),
                     contentDescription = stringResource(id = R.string.pet_photo_description),
                     contentScale = ContentScale.Inside,
                     modifier = Modifier

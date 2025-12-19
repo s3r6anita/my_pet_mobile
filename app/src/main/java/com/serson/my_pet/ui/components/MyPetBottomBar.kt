@@ -30,7 +30,7 @@ sealed class BottomNavigationItems(
 
     data object MedCard : BottomNavigationItems(
         route = Routes.BottomBarRoutes.ListMedRecords,
-        icon = R.drawable.therapy_icon
+        icon = R.drawable.medrecord_icon
     )
 
     data object Profile : BottomNavigationItems(
