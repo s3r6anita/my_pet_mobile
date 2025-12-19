@@ -16,6 +16,7 @@ sealed class Routes(
     data object UpdateProcedure : Routes("UpdateProcedure", R.string.update_procedure_screen_title)
     data object MedRecord : Routes("MedRecord", R.string.medrecord_screen_title)
     data object CreateMedRecord : Routes("CreateMedRecord", R.string.create_medrecord_screen_title)
+    data object UpdateMedRecord : Routes("UpdateMedRecord", R.string.update_medrecord_screen_title)
 
     sealed class BottomBarRoutes(route: String, title: Int) : Routes(route, title) {
         data object Profile :

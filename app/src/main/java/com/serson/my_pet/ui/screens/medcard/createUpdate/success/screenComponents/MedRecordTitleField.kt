@@ -1,0 +1,48 @@
+package com.serson.my_pet.ui.screens.medcard.createUpdate.success.screenComponents
+
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.OutlinedTextField
+import androidx.compose.material3.Text
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.unit.dp
+import com.serson.my_pet.R
+import com.serson.my_pet.ui.theme.OutlinedTextFieldColor
+import com.serson.my_pet.util.validate
+
+@Composable
+fun MedRecordTitleField(
+    isCreateScreen: Boolean,
+    onNameChange: (String) -> Unit,
+    modifier: Modifier = Modifier,
+    givenTitle: String
+) {
+    var title by remember { mutableStateOf(givenTitle) }
+    title = givenTitle
+
+    OutlinedTextField(
+        modifier = modifier.padding(bottom = 10.dp),
+        value = title,
+        onValueChange = {
+            title = it
+            onNameChange(it)
+        },
+        label = {
+            if (isCreateScreen) Text(
+                stringResource(R.string.cu_medrecord_name),
+                style = TextStyle(color = OutlinedTextFieldColor)
+            ) else {
+                Text(stringResource(R.string.cu_medrecord_name))
+            }
+        },
+        shape = RoundedCornerShape(12.dp),
+        isError = !validate(title)
+    )
+}

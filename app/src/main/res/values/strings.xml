@@ -104,6 +104,13 @@
     <!-- Экран создания/редактирования записей медкарты-->
     <string name="medrecord_screen_title">Запись</string>
     <string name="create_medrecord_screen_title">Создание записи</string>
+    <string name="update_medrecord_screen_title">Обновление записи</string>
+    <string name="cu_medrecord_title_create">Новая запись</string>
+    <string name="cu_medrecord_title_update">Редактирование</string>
+    <string name="cu_medrecord_name">Название</string>
+    <string name="cu_medrecord_date">Дата</string>
+    <string name="cu_medrecord_open_calendar">Открыть календарь</string>
+    <string name="cu_medrecord_tmp_notice">Заметки</string>
 
     <!--  Экран с отчетом об ошибке  -->
     <string name="bug_report_title">Отчет об ошибке</string>

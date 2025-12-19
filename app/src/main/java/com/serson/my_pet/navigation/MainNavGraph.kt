@@ -8,6 +8,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
 import androidx.navigation.navigation
 import com.serson.my_pet.ui.screens.bugReport.BugReportScreen
+import com.serson.my_pet.ui.screens.medcard.createUpdate.CreateUpdateMedRecordScreen
 import com.serson.my_pet.ui.screens.medcard.list.ListMedRecords
 import com.serson.my_pet.ui.screens.procedure.createUpdate.CreateUpdateProcedureScreen
 import com.serson.my_pet.ui.screens.procedure.list.ListProcedureScreen
@@ -117,6 +118,7 @@ fun NavGraphBuilder.mainNavGraph(
                 procedureId = backStackEntry.arguments?.getInt("procedureId") ?: -1
             )
         }
+
         /** создание процедуры */
         composable(
             route = "${Routes.CreateProcedure.route}/{profileId}",
@@ -132,6 +134,7 @@ fun NavGraphBuilder.mainNavGraph(
                 profileId = backStackEntry.arguments?.getInt("profileId") ?: -1,
             )
         }
+
         /** изменение процедуры */
         composable(
             route = "${Routes.UpdateProcedure.route}/{procedureId}",
@@ -164,6 +167,40 @@ fun NavGraphBuilder.mainNavGraph(
                 navController = navController,
                 profileId = backStackEntry.arguments?.getInt("profileId") ?: -1,
                 canNavigateBack = backStackEntry.arguments?.getBoolean("canNavigateBack") ?: true
+            )
+        }
+
+        /** создание медицинской записи */
+        composable(
+            route = "${Routes.CreateMedRecord.route}/{profileId}",
+            arguments = listOf(
+                navArgument(name = "profileId") {
+                    type = NavType.IntType
+                }
+            )
+        ) { backStackEntry ->
+            CreateUpdateMedRecordScreen(
+                navController = navController,
+                snackbarHostState = snackbarHostState,
+                isCreateScreen = true,
+                profileId = backStackEntry.arguments?.getInt("profileId") ?: -1
+            )
+        }
+
+        /** изменение медицинской записи */
+        composable(
+            route = "${Routes.UpdateMedRecord.route}/{medRecordId}",
+            arguments = listOf(
+                navArgument(name = "medRecordId") {
+                    type = NavType.IntType
+                }
+            )
+        ) { backStackEntry ->
+            CreateUpdateMedRecordScreen(
+                navController = navController,
+                snackbarHostState = snackbarHostState,
+                isCreateScreen = false,
+                medRecordId = backStackEntry.arguments?.getInt("medRecordId") ?: -1,
             )
         }
 
