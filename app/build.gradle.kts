@@ -1,4 +1,6 @@
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
+import java.io.FileInputStream
+import java.util.Properties
 
 plugins {
     alias(libs.plugins.android.application)
@@ -42,6 +44,46 @@ android {
     }
     buildFeatures {
         compose = true
+    }
+
+    signingConfigs {
+        create("release") {
+            val keystoreProperties = Properties()
+            val localPropertiesFile = rootProject.file("local.properties")
+            if (localPropertiesFile.exists()) {
+                keystoreProperties.load(FileInputStream(localPropertiesFile))
+            }
+
+            // пытаемся взять значение из Env (для CI), если нет -> из local.properties
+            val storePath = System.getenv("SIGNING_STORE_PATH")
+                ?: keystoreProperties.getProperty("SIGNING_STORE_PATH")
+
+            val storePassVal = System.getenv("SIGNING_STORE_PASSWORD")
+                ?: keystoreProperties.getProperty("SIGNING_STORE_PASSWORD")
+
+            val keyAliasVal = System.getenv("SIGNING_KEY_ALIAS")
+                ?: keystoreProperties.getProperty("SIGNING_KEY_ALIAS")
+
+            val keyPassVal = System.getenv("SIGNING_KEY_PASSWORD")
+                ?: keystoreProperties.getProperty("SIGNING_KEY_PASSWORD")
+
+            storeFile = file(storePath)
+            storePassword = storePassVal
+            keyAlias = keyAliasVal
+            keyPassword = keyPassVal
+        }
+    }
+
+    buildTypes {
+        getByName("release") {
+            signingConfig = signingConfigs.getByName("release")
+            isDebuggable = false
+            isMinifyEnabled = true
+            proguardFiles(
+                getDefaultProguardFile("proguard-android-optimize.txt"),
+                file("proguard-rules.pro"),
+            )
+        }
     }
 }
 
