@@ -8,6 +8,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
 import androidx.navigation.navigation
 import com.serson.my_pet.ui.screens.bugReport.BugReportScreen
+import com.serson.my_pet.ui.screens.procedure.list.ListProcedureScreen
 import com.serson.my_pet.ui.screens.profile.createUpdate.CreateUpdateProfileScreen
 import com.serson.my_pet.ui.screens.profile.list.ListProfileScreen
 import kotlinx.coroutines.CoroutineScope
@@ -77,6 +78,25 @@ fun NavGraphBuilder.mainNavGraph(
 //                globalScope = globalScope,
 //                profileId = backStackEntry.arguments?.getInt("profileId") ?: -1
 //            )
+        }
+
+        /** список процедур */
+        composable(
+            route = "${Routes.BottomBarRoutes.ListProcedures.route}/{profileId}/{canNavigateBack}",
+            arguments = listOf(
+                navArgument(name = "profileId") {
+                    type = NavType.IntType
+                },
+                navArgument(name = "canNavigateBack") {
+                    type = NavType.BoolType
+                }
+            )
+        ) { backStackEntry ->
+            ListProcedureScreen(
+                navController = navController,
+                profileId = backStackEntry.arguments?.getInt("profileId") ?: -1,
+                canNavigateBack = backStackEntry.arguments?.getBoolean("canNavigateBack") ?: true
+            )
         }
 
         /** обратная связь **/

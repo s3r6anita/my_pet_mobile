@@ -24,8 +24,7 @@ fun ListProcedureScreen(
     viewModel: ListProcedureViewModel = hiltViewModel()
 ) {
     val scope = rememberCoroutineScope()
-    val msg by viewModel.msg.collectAsState()
-    val pet = viewModel.pet
+    val pet by viewModel.pet.collectAsState()
 
     LaunchedEffect(Unit) {
         scope.launch {
@@ -36,23 +35,14 @@ fun ListProcedureScreen(
 
     var showStatusDialog by remember { mutableStateOf(false) }
 
-    if (msg != "") {
-        showStatusDialog = true
-    }
-    if (showStatusDialog) {
-        StatusDialog(msg) {
-            showStatusDialog = !showStatusDialog
-            viewModel.resetMsg()
-        }
-    }
-
-    if (pet.id == -1) {
+    if (pet == null) {
         LoadingScreen()
     } else {
         SuccessListProcedureScreen(
             canNavigateBack,
             profileId,
-            { navController }
+            { navController },
+            pet!!
         )
     }
 }
