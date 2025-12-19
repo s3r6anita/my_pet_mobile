@@ -8,6 +8,9 @@ import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
 import androidx.navigation.navigation
 import com.serson.my_pet.ui.screens.bugReport.BugReportScreen
+import com.serson.my_pet.ui.screens.procedure.createUpdate.CreateUpdateProcedureScreen
+import com.serson.my_pet.ui.screens.procedure.list.ListProcedureScreen
+import com.serson.my_pet.ui.screens.procedure.show.ProcedureScreen
 import com.serson.my_pet.ui.screens.profile.createUpdate.CreateUpdateProfileScreen
 import com.serson.my_pet.ui.screens.profile.list.ListProfileScreen
 import kotlinx.coroutines.CoroutineScope
@@ -77,6 +80,70 @@ fun NavGraphBuilder.mainNavGraph(
 //                globalScope = globalScope,
 //                profileId = backStackEntry.arguments?.getInt("profileId") ?: -1
 //            )
+        }
+
+        /** список процедур */
+        composable(
+            route = "${Routes.BottomBarRoutes.ListProcedures.route}/{profileId}/{canNavigateBack}",
+            arguments = listOf(
+                navArgument(name = "profileId") {
+                    type = NavType.IntType
+                },
+                navArgument(name = "canNavigateBack") {
+                    type = NavType.BoolType
+                }
+            )
+        ) { backStackEntry ->
+            ListProcedureScreen(
+                navController = navController,
+                profileId = backStackEntry.arguments?.getInt("profileId") ?: -1,
+                canNavigateBack = backStackEntry.arguments?.getBoolean("canNavigateBack") ?: true
+            )
+        }
+
+        /** процедура */
+        composable(
+            route = "${Routes.Procedure.route}/{procedureId}",
+            arguments = listOf(
+                navArgument(name = "procedureId") {
+                    type = NavType.IntType
+                }
+            )
+        ) { backStackEntry ->
+            ProcedureScreen(
+                navController = navController,
+                procedureId = backStackEntry.arguments?.getInt("procedureId") ?: -1
+            )
+        }
+        /** создание процедуры */
+        composable(
+            route = "${Routes.CreateProcedure.route}/{profileId}",
+            arguments = listOf(
+                navArgument(name = "profileId") {
+                    type = NavType.IntType
+                }
+            )
+        ) { backStackEntry ->
+            CreateUpdateProcedureScreen(
+                navController = navController,
+                isCreateScreen = true,
+                profileId = backStackEntry.arguments?.getInt("profileId") ?: -1,
+            )
+        }
+        /** изменение процедуры */
+        composable(
+            route = "${Routes.UpdateProcedure.route}/{procedureId}",
+            arguments = listOf(
+                navArgument(name = "procedureId") {
+                    type = NavType.IntType
+                }
+            )
+        ) { backStackEntry ->
+            CreateUpdateProcedureScreen(
+                navController = navController,
+                isCreateScreen = false,
+                procedureId = backStackEntry.arguments?.getInt("procedureId") ?: -1
+            )
         }
 
         /** обратная связь **/

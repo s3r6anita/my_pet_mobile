@@ -35,19 +35,19 @@ class ListProfileViewModel @Inject constructor(
     val uiState = _uiState.asStateFlow()
 
     fun getPetsProfiles() {
-        _uiState.update { UIState.Loading }
+//        _uiState.update { UIState.Loading }
         viewModelScope.launch(IO) {
-            try {
-                repository.replaceAllData(_petsUiState.value, _proceduresUiState.value, _medRecordsUiState.value,  _procedureTitlesUiState.value)
-            } catch (e: HttpException) {
+//            try {
+//                repository.replaceAllData(_petsUiState.value, _proceduresUiState.value, _medRecordsUiState.value,  _procedureTitlesUiState.value)
+//            } catch (e: HttpException) {
                 _petsUiState.value = repository.getPets()
-                _uiState.update { UIState.Error }
-            } catch (e: IOException) {
-                _petsUiState.value = repository.getPets()
-                _uiState.update { UIState.Error }
-            } finally {
+//                _uiState.update { UIState.Error }
+//            } catch (e: IOException) {
+//                _petsUiState.value = repository.getPets()
+//                _uiState.update { UIState.Error }
+//            } finally {
                 _uiState.update { UIState.Success }
-            }
+//            }
         }
     }
 }

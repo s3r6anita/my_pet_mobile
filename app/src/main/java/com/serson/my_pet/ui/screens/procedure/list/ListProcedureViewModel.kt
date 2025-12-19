@@ -25,21 +25,12 @@ class ListProcedureViewModel @Inject constructor(
     private val _titlesUiState = MutableStateFlow(emptyList<ProcedureTitle>())
     val titlesUiState = _titlesUiState.asStateFlow()
 
-    private val _msg = MutableStateFlow("")
-    val msg = _msg.asStateFlow()
-
-    private val _isRefreshing = MutableStateFlow(false)
-    val isRefreshing = _isRefreshing.asStateFlow()
-
-    var pet = Pet(
-        "", "", "", "Самец",
-        LocalDate.now(),
-        "", "", "", -1
-    )
+    private val _pet = MutableStateFlow<Pet?>(null)
+    val pet = _pet.asStateFlow()
 
     fun getPetProcedures(petId: Int) {
         viewModelScope.launch(Dispatchers.IO) {
-            pet = repository.getPetForCU(petId)
+            _pet.value = repository.getPetForCU(petId)
             repository.getProceduresForPet(petId).collect { procedures ->
                 _proceduresUiState.value = procedures
             }
@@ -54,7 +45,4 @@ class ListProcedureViewModel @Inject constructor(
         }
     }
 
-    fun resetMsg() {
-        _msg.value = ""
-    }
 }

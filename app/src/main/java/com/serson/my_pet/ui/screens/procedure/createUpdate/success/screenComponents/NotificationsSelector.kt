@@ -121,11 +121,11 @@ fun NotificationsSelector(
             )
         )
 
-//        Text(
-//            text = stringResource(id = R.string.cu_screen_notifications),
-//            style = MaterialTheme.typography.bodyLarge,
-//            modifier = Modifier.padding(start = 16.dp)
-//        )
+        Text(
+            text = stringResource(id = R.string.cu_screen_notifications),
+            style = MaterialTheme.typography.bodyLarge,
+            modifier = Modifier.padding(start = 16.dp)
+        )
     }
     if (enableNotifications) {
         // Время напоминания - тайм пикер

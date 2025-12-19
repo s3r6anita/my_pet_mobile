@@ -27,8 +27,8 @@ import com.serson.my_pet.data.db.entities.ProcedureType
         ProcedureTitle::class,
         ProcedureType::class,
         Frequency::class],
-    version = 2,
-    exportSchema = false
+    version = 1,
+    exportSchema = true
 )
 @TypeConverters(Converters::class)
 abstract class PetDatabase : RoomDatabase() {
@@ -51,6 +51,7 @@ abstract class PetDatabase : RoomDatabase() {
                     "pet_database"
                 )
                     .createFromAsset("databases/initial_db.db")
+//                    .fallbackToDestructiveMigration()
                     .build()
                     .also { Instance = it }
             }

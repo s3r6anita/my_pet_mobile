@@ -25,6 +25,7 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import com.serson.my_pet.R
+import com.serson.my_pet.data.db.entities.Pet
 import com.serson.my_pet.navigation.Routes
 import com.serson.my_pet.ui.components.BottomBarData
 import com.serson.my_pet.ui.components.ButtonComponent
@@ -40,12 +41,12 @@ fun SuccessListProcedureScreen(
     canNavigateBack: Boolean,
     profileId: Int,
     getNavController: () -> NavHostController,
+    pet: Pet,
     viewModel: ListProcedureViewModel = hiltViewModel()
 ) {
     val navController = getNavController()
 
     val procedures by viewModel.proceduresUiState.collectAsState()
-    val pet = viewModel.pet
     val titles by viewModel.titlesUiState.collectAsState()
 
     Scaffold(

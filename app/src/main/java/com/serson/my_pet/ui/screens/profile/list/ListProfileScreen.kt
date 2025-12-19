@@ -3,9 +3,15 @@ package com.serson.my_pet.ui.screens.profile.list
 import androidx.compose.material3.SnackbarHostState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
+import com.serson.my_pet.ui.screens.ErrorScreen
+import com.serson.my_pet.ui.screens.LoadingScreen
+import com.serson.my_pet.ui.screens.profile.list.success.SuccessListProfileScreen
+import com.serson.my_pet.util.UIState
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 
@@ -17,7 +23,7 @@ fun ListProfileScreen(
     viewModel: ListProfileViewModel = hiltViewModel()
 ) {
     val localScope = rememberCoroutineScope()
-    //val uiState by viewModel.uiState.collectAsState()
+    val uiState by viewModel.uiState.collectAsState()
 
     LaunchedEffect(Unit) {
         localScope.launch {
@@ -25,5 +31,18 @@ fun ListProfileScreen(
         }
     }
 
+    when (uiState) {
+        UIState.Loading -> LoadingScreen()
+        UIState.Success -> SuccessListProfileScreen(
+            snackbarHostState = snackbarHostState,
+            globalScope = globalScope(),
+            getNavController = { navController }
+        )
 
+        else -> ErrorScreen(retryAction = {
+            localScope.launch {
+                viewModel.getPetsProfiles()
+            }
+        })
+    }
 }

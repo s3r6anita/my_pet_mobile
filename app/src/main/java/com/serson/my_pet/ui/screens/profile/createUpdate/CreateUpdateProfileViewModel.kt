@@ -22,7 +22,7 @@ class CreateUpdateProfileViewModel @Inject constructor(
         Pet(
             "", "", "", "Самец",
             LocalDate.now(),
-            "", "", "", -1
+            "", "", ""
         )
     )
     val petUiState = _petUiState.asStateFlow()
@@ -37,9 +37,9 @@ class CreateUpdateProfileViewModel @Inject constructor(
     }
 
     fun createPet(pet: Pet) {
-        _msg.value = ""
         viewModelScope.launch {
             repository.insertPet(pet)
+            _msg.value = null
         }
     }
 

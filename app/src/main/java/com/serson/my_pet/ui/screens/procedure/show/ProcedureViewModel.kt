@@ -33,33 +33,36 @@ class ProcedureViewModel @Inject constructor(
     private val _msg = MutableStateFlow<String?>("")
     val msg = _msg.asStateFlow()
 
-    var title = ProcedureTitle(name = "", type = -1, id = -1)
-    var type = ProcedureType(name = "", id = title.type)
-    var frequency = Frequency(option = "Никогда", frequency = "0")
+    private val _title = MutableStateFlow(ProcedureTitle(name = "", type = -1, id = -1))
+    val title = _title.asStateFlow()
+    private val _type = MutableStateFlow(ProcedureType(name = "", id = _title.value.type))
+    val type = _type.asStateFlow()
+    private val _frequency = MutableStateFlow(Frequency(option = "Никогда", frequency = "0"))
+    val frequency = _frequency.asStateFlow()
 
     fun getProcedure(procedureId: Int) {
         viewModelScope.launch(Dispatchers.IO) {
             _procedureUiState.value = repository.getProcedure(procedureId)
-            frequency = repository.getFrequency(_procedureUiState.value.frequencyOption)
-            title = repository.getProcedureTitlesForCU()
-                .find { it.id == _procedureUiState.value.title } ?: title
-            type = repository.getProcedureTypes()
-                .find { it.id == title.type } ?: type
+            _frequency.value = repository.getFrequency(_procedureUiState.value.frequencyOption)
+            _title.value = repository.getProcedureTitlesForCU()
+                .find { it.id == _procedureUiState.value.title } ?: title.value
+            _type.value = repository.getProcedureTypes()
+                .find { it.id == _title.value.type } ?: type.value
 
-            when (frequency.option) {
-                FrequencyOptions.Minutes.period -> frequency.frequency =
+            when (frequency.value.option) {
+                FrequencyOptions.Minutes.period -> frequency.value.frequency =
                     _procedureUiState.value.frequency + FrequencyOptions.Minutes.abbreviation
 
-                FrequencyOptions.Hours.period -> frequency.frequency =
+                FrequencyOptions.Hours.period -> frequency.value.frequency =
                     _procedureUiState.value.frequency + FrequencyOptions.Hours.abbreviation
 
-                FrequencyOptions.Days.period -> frequency.frequency =
+                FrequencyOptions.Days.period -> frequency.value.frequency =
                     _procedureUiState.value.frequency + FrequencyOptions.Days.abbreviation
 
-                FrequencyOptions.Weeks.period -> frequency.frequency =
+                FrequencyOptions.Weeks.period -> frequency.value.frequency =
                     _procedureUiState.value.frequency + FrequencyOptions.Weeks.abbreviation
 
-                else -> frequency.frequency = FrequencyOptions.Never.abbreviation
+                else -> frequency.value.frequency = FrequencyOptions.Never.abbreviation
             }
         }
     }
