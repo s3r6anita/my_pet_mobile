@@ -54,23 +54,18 @@ android {
                 keystoreProperties.load(FileInputStream(localPropertiesFile))
             }
 
-            // пытаемся взять значение из Env (для CI), если нет -> из local.properties
-            val storePath = System.getenv("SIGNING_STORE_PATH")
-                ?: keystoreProperties.getProperty("SIGNING_STORE_PATH")
+            // пытаемся взять значение из local.properties, если нет -> из Env (для CI)
+            val storePath = keystoreProperties.getProperty("SIGNING_STORE_PATH") ?: System.getenv("SIGNING_STORE_PATH")
+            val storePassVal = keystoreProperties.getProperty("SIGNING_STORE_PASSWORD") ?: System.getenv("SIGNING_STORE_PASSWORD")
+            val keyAliasVal = keystoreProperties.getProperty("SIGNING_KEY_ALIAS") ?: System.getenv("SIGNING_KEY_ALIAS")
+            val keyPassVal = keystoreProperties.getProperty("SIGNING_KEY_PASSWORD") ?: System.getenv("SIGNING_KEY_PASSWORD")
 
-            val storePassVal = System.getenv("SIGNING_STORE_PASSWORD")
-                ?: keystoreProperties.getProperty("SIGNING_STORE_PASSWORD")
-
-            val keyAliasVal = System.getenv("SIGNING_KEY_ALIAS")
-                ?: keystoreProperties.getProperty("SIGNING_KEY_ALIAS")
-
-            val keyPassVal = System.getenv("SIGNING_KEY_PASSWORD")
-                ?: keystoreProperties.getProperty("SIGNING_KEY_PASSWORD")
-
-            storeFile = file(storePath)
-            storePassword = storePassVal
-            keyAlias = keyAliasVal
-            keyPassword = keyPassVal
+            if (!storePath.isNullOrEmpty()) {
+                storeFile = file(storePath)
+                storePassword = storePassVal
+                keyAlias = keyAliasVal
+                keyPassword = keyPassVal
+            }
         }
     }
 
