@@ -21,4 +21,6 @@ sealed class Routes(
         data object ListProcedures :
             BottomBarRoutes("ListProcedures", R.string.list_procedure_screen_title)
     }
+
+    data object BugReport : Routes("BugReport", R.string.bug_report_title)
 }

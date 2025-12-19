@@ -29,6 +29,7 @@ $DETEKT_BIN \
     --config .github/workflows/assets/detekt.yml \
     --report xml:build/reports/detekt/detekt.xml \
     --report html:build/reports/detekt/detekt.html \
+    --excludes "**/build/**,**/resources/**" \
     --base-path .
 
 # 3. Логика для CI (Reviewdog)
