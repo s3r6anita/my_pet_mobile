@@ -28,10 +28,10 @@ class CreateUpdateProcedureViewModel @Inject constructor(
 
     private val _procedureUiState = MutableStateFlow(
         Procedure(
-            0, 0, "", 0,
-            LocalDateTime.now().withMinute(0),
-            "", null,
-            0, 0
+            title = 0, isDone = 0, frequency = "", frequencyOption = 0,
+            dateDone = LocalDateTime.now().withMinute(0),
+            notes = "", reminder = null,
+            pet = 0, inMedCard = 0
         )
     )
     val procedureUiState = _procedureUiState.asStateFlow()
@@ -42,7 +42,8 @@ class CreateUpdateProcedureViewModel @Inject constructor(
 
     var frequencyOptionsTitles = mutableListOf<String>() // список вариантов частоты
 
-    var title = ProcedureTitle( // заголовок создаваемой (изменяемой) процедуры
+    var title = ProcedureTitle(
+        // заголовок создаваемой (изменяемой) процедуры
         name = "",
         type = 0,
     )
