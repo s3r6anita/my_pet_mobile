@@ -1,6 +1,10 @@
-## Скачивание приложения
-Для того чтобы начать пользоваться приложением перейдите в раздел [Releases](https://github.com/s3r6anita/my_pet_mobile/releases/) или откройте [последний релиз](https://github.com/s3r6anita/my_pet_mobile/releases/latest), там среди прикрепленных фалов найдите `app-release.apk` и установить на свое устройство.
+# Скачивание приложения
+Для того чтобы начать пользоваться приложением перейдите в раздел [Releases](https://github.com/s3r6anita/my_pet_mobile/releases/) или откройте [последний релиз](https://github.com/s3r6anita/my_pet_mobile/releases/latest), там среди прикрепленных файлов найдите `app-release.apk` и установить на свое устройство.
 
+
+# Работа с проектом
+
+Ниже приведены основные моменты по работе с приложением.
 
 ## Detekt. Работа и настройка
 
@@ -22,9 +26,9 @@ chmod +x detekt
 Они привидены в самодокументируемом формате, с описанием, что делает каждая проверка.
 
 Основные проверки:
->1. Запуск detekt для проверки качества кода
->2. Запуск тестов приложения
->3. Сборка приложения
+1. Запуск detekt для проверки качества кода
+2. Запуск тестов приложения
+3. Сборка приложения
 
 Также выполняется публикация архива с apk-файлом debug-сборки приложения. 
 Ссылка на архив доступна как артефакт pipeline-а (как найти в PR: "Checks" -> "Build & Test" -> "Upload Debug APK" -> "Artifact download URL:")
@@ -32,11 +36,10 @@ chmod +x detekt
 
 ## Подготовка релизной сборки
 Для создание release-сборки apk файла приложения необходимо выполнить следующие шаги:
-
->1. Получить файл для подписи apk - `upload-keystore.jks`
->2. Расположить в удобном месте, например `MyPet/keystores/upload-keystore.jks`
->3. Настроить local.properties, для этого в файл `MyPet/local.properties` поместить необходимые для подписи переменные 
->4. Выполнить в консоли команду `./gradlew assembleRelease`
->5. Созданный релизный apk (`app-release.apk`) находится в директории `MyPet/app/build/outputs/apk/release/app-release.apk`
+1. Получить файл для подписи apk - `upload-keystore.jks`
+2. Расположить в удобном месте, например `MyPet/keystores/upload-keystore.jks`
+3. Настроить local.properties, для этого в файл `MyPet/local.properties` поместить необходимые для подписи переменные 
+4. Выполнить в консоли команду `./gradlew assembleRelease`
+5. Созданный релизный apk (`app-release.apk`) находится в директории `MyPet/app/build/outputs/apk/release/app-release.apk`
 
 > Важный нюанс: MyPet - это локальное название директории, в которой расположен проект! может отличаться!
